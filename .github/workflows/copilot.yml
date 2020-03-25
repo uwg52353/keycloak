@@ -1,0 +1,16 @@
+name: Upload to CoPilot
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Upload to CoPilot
+      if: github.event_name == 'push'
+      run: bash <(curl -s https://copilot.blackducksoftware.com/ci/githubactions/scripts/upload)
